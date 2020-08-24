@@ -1,35 +1,34 @@
 import math
 
+
+# Constant
 POSIBLE_VALUES = list(range(1,10))
 SIZE_POSIBLE_VALUES = len(POSIBLE_VALUES)
 DEFAULT_VALUE = 'x'
 MENU_SPACING = 50
 
+
+# Global Variable
 matrix = []
-quadrants = {
-    '1': {'column': 0, 'row': 0},
-    '2': {'column': 3, 'row': 0},
-    '3': {'column': 6, 'row': 0},
-    '4': {'column': 0, 'row': 3},
-    '5': {'column': 3, 'row': 3},
-    '6': {'column': 6, 'row': 3},
-    '7': {'column': 0, 'row': 6},
-    '8': {'column': 3, 'row': 6},
-    '9': {'column': 6, 'row': 6}
-}
+quadrants = {}
+
 
 def define_quadrants():
     count = 1
-    number_quadrants = math.sqrt(len(POSIBLE_VALUES))
+    number_quadrants = int(math.sqrt(len(POSIBLE_VALUES)))
 
-    for row in range(len(POSIBLE_VALUES)):
-        for column in range(len(POSIBLE_VALUES)):
-            quadrants[{}.format(count)] = {
-                column
+    if not number_quadrants**2 == len(POSIBLE_VALUES):
+        print("Error: Number of possible elements is invalid")
+        exit()
+
+    for i in range(number_quadrants):
+        for j in range(number_quadrants):
+            quadrants['{}'.format(count)] = {
+                'column': j * 3,
+                'row': i * 3
             }
+            count += 1
 
-
-    pass
 
 def start_matrix():
     """
@@ -245,6 +244,7 @@ def menu():
 
 def welcome():
     print("WELCOME TO SODUKO SOLVER")
+    define_quadrants()
     start_matrix()
     while True:
         menu()
