@@ -27,8 +27,6 @@ def define_quadrants():
             quadrants[{}.format(count)] = {
                 column
             }
-
-
     pass
 
 def start_matrix():
